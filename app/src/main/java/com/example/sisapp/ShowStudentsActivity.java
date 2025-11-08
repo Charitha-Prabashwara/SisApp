@@ -1,5 +1,6 @@
 package com.example.sisapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -49,14 +50,24 @@ public class ShowStudentsActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.action_create_student) {
                 // Example action: show a Toast
-                Toast.makeText(this, "Create Student clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Create Student clicked", Toast.LENGTH_SHORT).show();
 
                 // TODO: Open CreateStudentActivity or show a dialog
                 // startActivity(new Intent(this, CreateStudentActivity.class));
-
+                Intent intent = new Intent(ShowStudentsActivity.this, CreateStudentActivity.class);
+                startActivity(intent);
+                finish();
                 return true; // Menu handled
             }
             return false;
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, Lock.class);
+        startActivity(intent);
+        // optionally finish(); if you don't want user to come back
     }
 }
