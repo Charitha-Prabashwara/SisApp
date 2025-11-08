@@ -1,8 +1,10 @@
 package com.example.sisapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +31,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.firstName.setText(students.get(position).getFirstName());
         holder.LastName.setText(students.get(position).getLastName());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, UpdateStudentActivity.class);
+            // Pass the student data to the Update Activity
+            intent.putExtra("STUDENT_ID", String.valueOf(students.get(position).getId())); // pass ID or whole object
+            context.startActivity(intent);
+            //Toast.makeText(context.getApplicationContext(), String.valueOf(students.get(position).getId()), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override

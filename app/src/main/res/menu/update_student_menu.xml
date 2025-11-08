@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Example menu item: Save changes -->
+
+
+    <!-- Example menu item: More options -->
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="Refresh"
+        android:icon="@drawable/ic_launcher_background"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_delete"
+        android:title="Delete"
+        android:icon="@drawable/ic_launcher_background"
+    app:showAsAction="never"/>
+
+
+
+</menu>
