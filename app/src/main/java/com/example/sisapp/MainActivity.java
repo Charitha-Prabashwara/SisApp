@@ -27,5 +27,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish(); // so user can't go back to splash
         }, SPLASH_DELAY);
+
+        new StudentsList(true);
     }
 }

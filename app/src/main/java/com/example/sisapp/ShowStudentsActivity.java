@@ -8,13 +8,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class ShowStudentsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class ShowStudentsActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         // Enable Edge-to-Edge
@@ -22,6 +28,12 @@ public class ShowStudentsActivity extends AppCompatActivity {
 
         // Set layout
         setContentView(R.layout.activity_show_students);
+
+        recyclerView  = findViewById(R.id.recyclerViewList);
+
+        List<Student> students = StudentsList.getStudents();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new MyAdapter(this, students));
 
         // Adjust padding for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
