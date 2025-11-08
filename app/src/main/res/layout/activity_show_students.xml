@@ -7,9 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".ShowStudentsActivity">
 
+    <!-- Top App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:title="Students"
+        android:titleTextColor="@android:color/white"
+        app:menu="@menu/menu_students" />
 
+    <!-- RecyclerView below toolbar -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewList"
         android:layout_width="match_parent"
-        android:layout_height="619dp" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/topAppBar"
+        android:padding="8dp" />
+
 </RelativeLayout>

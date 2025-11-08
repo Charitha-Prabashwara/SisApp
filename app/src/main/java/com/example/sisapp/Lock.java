@@ -42,7 +42,7 @@ public class Lock extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             if (password.getText().toString().equals(passwordText)){
-                Intent intent = new Intent(Lock.this, MainActivity.class);
+                Intent intent = new Intent(Lock.this, ShowStudentsActivity.class);
                 startActivity(intent);
                 finish();
             }
