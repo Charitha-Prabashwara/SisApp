@@ -16,8 +16,7 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/ic_launcher_background"
-        app:tint="#3F51B5"
+        app:srcCompat="@drawable/logicon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
