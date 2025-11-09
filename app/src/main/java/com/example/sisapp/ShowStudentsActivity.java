@@ -19,7 +19,9 @@ import java.util.List;
 
 public class ShowStudentsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    @Override
+
+
+    StudentsList studentList;
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -29,10 +31,12 @@ public class ShowStudentsActivity extends AppCompatActivity {
 
         // Set layout
         setContentView(R.layout.activity_show_students);
-
         recyclerView  = findViewById(R.id.recyclerViewList);
 
-        List<Student> students = StudentsList.getStudents();
+        studentList = new StudentsList(this);
+
+        List<Student> students = studentList.getStudents();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdapter(this, students));
 

@@ -29,7 +29,7 @@ public class CreateStudentActivity extends AppCompatActivity {
 
     Button btnSave;
 
-
+    StudentsList studentsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,9 @@ public class CreateStudentActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+        studentsList = new StudentsList(this);
 
 
         etNic = findViewById(R.id.etNic);
@@ -59,8 +62,8 @@ public class CreateStudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Student student = new Student(etNic.getText().toString(), firstName.getText().toString(), lastName.getText().toString(), fullName.getText().toString(), nameWithInitials.getText().toString(), addressLine1.getText().toString(), addressLine2.getText().toString(), Integer.parseInt(zipCode.getText().toString()));
-                boolean isCreated = StudentsList.addStudent(student);
-                if(isCreated){
+                long isCreated = studentsList.addStudent(student);
+                if(!(isCreated==-1)){
                     Toast.makeText(getApplicationContext(), "Student Created", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreateStudentActivity.this, ShowStudentsActivity.class);
                     startActivity(intent);

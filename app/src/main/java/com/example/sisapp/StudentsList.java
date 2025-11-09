@@ -1,13 +1,16 @@
 package com.example.sisapp;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class StudentsList {
     private static final List<Student> students = new ArrayList<>();
-
+    private DBHelper dbHelper;
     public StudentsList(Boolean fresh) {
+
         boolean active = (fresh != null) ? fresh : false; // default to false
 
         if (active) {
@@ -25,25 +28,21 @@ public class StudentsList {
         }
     }
 
-    public StudentsList(){
+    public StudentsList(Context context){
+        this.dbHelper = new DBHelper(context);
+    }
+
+    public List<Student> getStudents() {
+        return this.dbHelper.getAllStudents();
+    }
+
+    public  Student getStudentById(int id) {
+        return this.dbHelper.getStudentById(id);
 
     }
 
-    public static List<Student> getStudents() {
-        return students;
-    }
-
-    public static Student getStudentById(int id) {
-        for (Student student : students) {
-            if (student.getId() == id) {
-                return student;
-            }
-        }
-        return null;
-    }
-
-    public static boolean addStudent(Student newStudent) {
-        return students.add(newStudent);
+    public long addStudent(Student newStudent) {
+        return this.dbHelper.insertStudent(newStudent);
     }
 
     public static boolean createStudent(int id, String nic, String firstName, String lastName, String fullName,
@@ -55,35 +54,17 @@ public class StudentsList {
 
 
 
-    public static boolean deleteById(int id) {
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getId() == id) {
-                students.remove(i);
-                return true;
-            }
-        }
-        return false;
+    public int deleteById(int id) {
+        return this.dbHelper.deleteStudentById(id);
     }
 
 
-    public static boolean updateById(int id, Student updatedStudent) {
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getId() == id) {
-                updatedStudent.setId(id); // keep same ID
-                students.set(i, updatedStudent);
-                return true;
-            }
-        }
-        return false;
+    public void updateById(int id, Student updatedStudent) {
+        this.dbHelper.updateStudentById(updatedStudent, id);
+
     }
 
 
 
-    public static void main(String[] args) {
-        new StudentsList(true);
-        Student stu = StudentsList.getStudentById(1);
-        System.out.println(stu.toString());
-
-    }
 
 }

@@ -34,6 +34,9 @@ public class UpdateStudentActivity extends AppCompatActivity {
     String studentId;
 
     Button btnUpdate;
+
+    StudentsList studentsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,8 @@ public class UpdateStudentActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        studentsList = new StudentsList(this);
 
 
 
@@ -75,7 +80,7 @@ public class UpdateStudentActivity extends AppCompatActivity {
         studentId = intent.get().getStringExtra("STUDENT_ID");
 
         assert studentId != null;
-        AtomicReference<Student> student = new AtomicReference<>(StudentsList.getStudentById(Integer.parseInt(studentId)));
+        AtomicReference<Student> student = new AtomicReference<>(studentsList.getStudentById(Integer.parseInt(studentId)));
         if (!(student.get() == null)) {
             etNic.setText(student.get().getNic());
             firstName.setText(student.get().getFirstName());
@@ -94,7 +99,7 @@ public class UpdateStudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Student student = new Student(etNic.getText().toString(), firstName.getText().toString(), lastName.getText().toString(), fullName.getText().toString(), nameWithInitials.getText().toString(), addressLine1.getText().toString(), addressLine2.getText().toString(), Integer.parseInt(zipCode.getText().toString()));
-                StudentsList.updateById(Integer.parseInt(studentId), student);
+                studentsList.updateById(Integer.parseInt(studentId), student);
                 Toast.makeText(getApplicationContext(), "Student Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(UpdateStudentActivity.this, ShowStudentsActivity.class);
                 startActivity(intent);
@@ -111,7 +116,7 @@ public class UpdateStudentActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(item -> {
 
             if (item.getItemId() == R.id.action_refresh) {
-                 student.set(StudentsList.getStudentById(Integer.parseInt(studentId)));
+                 student.set(studentsList.getStudentById(Integer.parseInt(studentId)));
                 if (!(student.get() == null)) {
                     etNic.setText(student.get().getNic());
                     firstName.setText(student.get().getFirstName());
@@ -134,8 +139,8 @@ public class UpdateStudentActivity extends AppCompatActivity {
                         .setMessage("Are you sure you want to delete this student?")
                         .setPositiveButton("Yes", (dialog, which) -> {
                             // Delete student action
-                            boolean deleted = StudentsList.deleteById(Integer.parseInt(studentId));
-                            if(!deleted){
+                            int deleted = studentsList.deleteById(Integer.parseInt(studentId));
+                            if(!(deleted == -1)){
                                 Toast.makeText(getApplicationContext(), "Student not deleted", Toast.LENGTH_SHORT).show();
                             }else{
                                 Toast.makeText(getApplicationContext(), "Student Deleted", Toast.LENGTH_SHORT).show();
