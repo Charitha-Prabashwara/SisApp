@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- New Modern Blue Theme -->
+    <color name="blue_primary">#1976D2</color>      <!-- A strong, classic blue -->
+    <color name="blue_primary_dark">#004BA0</color> <!-- A darker shade for status bar -->
+    <color name="blue_accent">#64B5F6</color>       <!-- A lighter blue for FABs and highlights -->
+    <color name="surface_light">#F5F5F5</color>     <!-- A very light grey for backgrounds -->
+    <color name="surface_dark">#121212</color>        <!-- Standard dark theme background -->
+    <color name="card_background_light">#FFFFFF</color>
+    <color name="card_background_dark">#1E1E1E</color>
 </resources>

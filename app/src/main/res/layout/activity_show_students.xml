@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
     tools:context=".ShowStudentsActivity">
 
-    <!-- Top App Bar -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
+    <!-- 1. AppBarLayout to properly contain the toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?android:attr/windowBackground"
-        android:title="Students"
-        android:titleTextColor="@android:color/white"
-        app:menu="@menu/menu_students" />
+        android:layout_height="wrap_content">
 
-    <!-- RecyclerView below toolbar -->
+        <!-- 2. The corrected MaterialToolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Students"
+            app:menu="@menu/menu_students"
+            style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface" />
+        <!--
+        The "style" attribute is the key fix. It tells the toolbar:
+        - Use '?attr/colorPrimary' for the background.
+        - Use '?attr/colorOnPrimary' for the title and menu icons.
+        This automatically handles light/dark modes.
+        -->
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- 3. RecyclerView that scrolls underneath the toolbar -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/topAppBar"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -3,6 +3,13 @@
     <style name="Base.Theme.SisApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorPrimaryVariant">@color/blue_primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/blue_accent</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">@color/blue_primary_dark</item>
+        <item name="android:windowBackground">@color/surface_light</item>
     </style>
 
     <style name="Theme.SisApp" parent="Base.Theme.SisApp" />
