@@ -133,9 +133,9 @@ public class UpdateStudentActivity extends AppCompatActivity {
                             // Delete student action
                             int deleted = studentsList.deleteById(Integer.parseInt(studentId));
                             if(!(deleted == -1)){
-                                Toast.makeText(getApplicationContext(), "Student not deleted", Toast.LENGTH_SHORT).show();
-                            }else{
                                 Toast.makeText(getApplicationContext(), "Student Deleted", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Student not Deleted", Toast.LENGTH_SHORT).show();
                             }
 
                             intent.set(new Intent(UpdateStudentActivity.this, ShowStudentsActivity.class));
