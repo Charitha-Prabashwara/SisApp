@@ -1,6 +1,7 @@
 package com.example.sisapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -49,6 +50,15 @@ public class ShowStudentsActivity extends AppCompatActivity {
 
         // Setup Material Toolbar
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+        String password =sharedPreferences.getString("password", "");
+
+        if(password.equals("")){
+            toolbar.getMenu().findItem(R.id.action_change_password).setTitle("Set Password");
+        }else{
+            toolbar.getMenu().findItem(R.id.action_change_password).setTitle("Change Password");
+        }
 
         // Handle menu item clicks
         toolbar.setOnMenuItemClickListener(item -> {

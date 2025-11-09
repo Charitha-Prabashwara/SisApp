@@ -16,11 +16,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class ChangePassword extends AppCompatActivity {
     EditText currentPassword, newPassword, confirmPassword;
     Button changePasswordBtn;
 
     String getCurrentPassword;
+
+    TextInputLayout layout_current_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +40,12 @@ public class ChangePassword extends AppCompatActivity {
         newPassword = findViewById(R.id.input_new_password);
         confirmPassword= findViewById(R.id.input_confirm_password);
         changePasswordBtn = findViewById(R.id.btn_change_password);
-
+        layout_current_password = findViewById(R.id.layout_current_password);
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
         getCurrentPassword = sharedPreferences.getString("password", ""); // null if not found
 
         if(getCurrentPassword.isEmpty()){
+            layout_current_password.setVisibility(View.GONE);
             currentPassword.setVisibility(INVISIBLE);
         }
 
