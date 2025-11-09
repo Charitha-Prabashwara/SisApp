@@ -44,7 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:layout_marginHorizontal="20dp">
 
             <!--
             All your TextInputLayout fields remain here exactly as they were.
@@ -186,7 +187,8 @@
             android:text="Save Changes"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            app:cornerRadius="8dp"/>
+            app:cornerRadius="8dp"
+            android:layout_marginHorizontal="40dp"/>
         <!--
         Key Changes:
         1.  `android:backgroundTint` and `android:textColor` are removed.
